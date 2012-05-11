@@ -114,7 +114,7 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 </tr>
 </table>
 
-## Additional Variables
+## Additional Single Variables
 
 <table>
 <tr>
@@ -134,7 +134,7 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 	<td>Rotates through any number of pipe delimited values.</td>
 </tr>
 <tr>
-	<td>{total_results=''}</td>
+	<td>{total_results}</td>
 	<td>The total amount of categories returned.</td>
 </tr>
 </table>
