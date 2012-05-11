@@ -176,7 +176,7 @@ This example will only return categories that are used by 2 or more entires.
 	</li>
 	{/exp:nyan}
 
-## CSS Example
+### Example with CSS
 
 	{exp:nyan cat_id="1" css_class="categories"}
 	<li class="{cat_weight}">
