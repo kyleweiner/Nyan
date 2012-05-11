@@ -24,14 +24,14 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>css_class</td>
+	<td>class</td>
 	<td>string</td>
 	<td></td>
 	<td>Class(es) for the outermost list container.</td>
 	<td></td>
 </tr>
 <tr>
-	<td>css_id</td>
+	<td>id</td>
 	<td>string</td>
 	<td></td>
 	<td>ID for the outermost list container.</td>
@@ -47,7 +47,7 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 <tr>
 	<td>limit</td>
 	<td>int</td>
-	<td>0</td>
+	<td></td>
 	<td>Maximum number of categories to show.</td>
 	<td></td>
 </tr>
@@ -59,10 +59,10 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 	<td></td>
 </tr>
 <tr>
-	<td>limit</td>
+	<td>order</td>
 	<td>abc|pop</td>
 	<td>pop</td>
-	<td>Set to 'abc' for alphabetical or 'pop' for popularity.</td>
+	<td>Set to 'abc' for alphabetical or 'pop' for popularity / ordering by entry count.</td>
 	<td></td>
 </tr>
 <tr>
@@ -167,9 +167,25 @@ This example will only return categories that are used by 2 or more entires.
 	<li class="{cat_weight}">{cat_name} ({cat_entry_count})</li>
 	{/exp:nyan}
 
+### Limit categories by popularity
+
+This example will only return categories that are used by 2 or more entires.
+
+	{exp:nyan cat_id="1" min_count="2"}
+	<li class="{cat_weight}">{cat_name} ({cat_entry_count})</li>
+	{/exp:nyan}
+
+### Limit categories returned
+
+This example will display only 2 categories.
+
+	{exp:nyan cat_id="1" limit="2"}
+	<li class="{cat_weight}">{cat_name} ({cat_entry_count})</li>
+	{/exp:nyan}
+
 ### Additional tags example
 
-	{exp:nyan cat_id="1" css_id="my-id" css_class="my-class"}
+	{exp:nyan cat_id="1" id="my-id" class="my-class"}
 	<li class="{cat_weight} {switch='odd meow|even meow-meow'}">
 		<a href="category/{cat_url_title}">{count} of {total_results}: {cat_name} ({cat_entry_count})</a>
 		{if no_results}Sorry, no results.{/if}
@@ -178,14 +194,14 @@ This example will only return categories that are used by 2 or more entires.
 
 ### Example with CSS
 
-	{exp:nyan cat_id="1" css_class="categories"}
+	{exp:nyan cat_id="1" class="categories"}
 	<li class="{cat_weight}">
 		<span>{cat_entry_count} entries in</span> <a href="category/{cat_url_title}">{cat_name}</a>
 		{if no_results}There are no categories to display.{/if}
 	</li>
 	{/exp:nyan}
 
-The following CSS will render a traditional tag cloud style list of categories and assumes the "css_class" parameter is set to "categories":
+The following CSS will render a traditional tag cloud style list of categories and assumes the "class" parameter is set to "categories":
 
 	.categories li { display: inline; }
 		

@@ -192,8 +192,8 @@ class Nyan {
 		$tagdata = $this->EE->TMPL->parse_variables(rtrim($this->EE->TMPL->tagdata), $vars);
 
 		$output  = '<ol';
-		$output .= ($this->css_id) ? ' id="'.$this->css_id.'"' : $output; // css_id
-		$output .= ($this->css_class) ? ' class="'.$this->css_class.'"' : $output; // css_class
+		$output .= ($this->css_id) ? ' id="'.$this->css_id.'"' : NULL; // css_id
+		$output .= ($this->css_class) ? ' class="'.$this->css_class.'"' : NULL; // css_class
 		$output .= '>'.$tagdata."\n</ol>";
 
 		return $output;	
