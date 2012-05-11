@@ -176,6 +176,37 @@ This example will only return categories that are used by 2 or more entires.
 	</li>
 	{/exp:nyan}
 
+## CSS Example
+
+	{exp:nyan cat_id="1" css_class="categories"}
+	<li class="{cat_weight}">
+		<span>{cat_entry_count} entries in</span> <a href="category/{cat_url_title}">{cat_name}</a>
+		{if no_results}There are no categories to display.{/if}
+	</li>
+	{/exp:nyan}
+
+The following CSS will render a traditional tag cloud style list of categories and assumes the "css_class" parameter is set to "categories":
+
+	.categories li { display: inline; }
+		
+	/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+	.categories span {
+		border: 0; 
+		clip: rect(0 0 0 0); 
+		height: 1px;
+		margin: -1px; 
+		overflow: hidden; 
+		padding: 0; 
+		position: absolute; 
+		width: 1px; }
+	
+	/* Nyan classes */
+	.categories .not-popular { font-size: 1em; opacity: .2; }
+	.categories .mildly-popular { font-size: 1.4em; opacity: .4; }
+	.categories .popular { font-size: 1.8em; opacity: .6; }
+	.categories .very-popular { font-size: 2.2em; opacity: .8; }
+	.categories .super-popular { font-size: 2.6em; opacity: .95; }
+
 ## Change Log
 
 ### v1.0.0
