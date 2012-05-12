@@ -8,7 +8,7 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 
 ## Features
 
-* No more forced inline styles: use your own CSS.
+* No forced inline styles: use your own CSS.
 * Define your popularity styles using 1 or 100 classes. You decide.
 * Display the entry count next to each category.
 * Set the minimum number of entries a category needs to appear in the results.
