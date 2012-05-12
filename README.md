@@ -176,20 +176,18 @@ This example will only return categories that are used by 2 or more entires.
 	<li class="{cat_weight}">{cat_name} ({cat_entry_count})</li>
 	{/exp:nyan}
 
-### Limit categories by popularity
-
-This example will only return categories that are used by 2 or more entires.
-
-	{exp:nyan cat_id="1" min_count="2"}
-	<li class="{cat_weight}">{cat_name} ({cat_entry_count})</li>
-	{/exp:nyan}
-
 ### Limit categories returned
 
 This example will display only 2 categories.
 
 	{exp:nyan cat_id="1" limit="2"}
 	<li class="{cat_weight}">{cat_name} ({cat_entry_count})</li>
+	{/exp:nyan}
+
+### Flat list of categories with entry counts
+
+	{exp:nyan cat_id="1"}
+	<li>{cat_name} ({cat_entry_count})</li>
 	{/exp:nyan}
 
 ### Additional tags example
