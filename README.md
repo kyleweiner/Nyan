@@ -6,6 +6,15 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 
 * Copy the `nyan` folder to your `/system/expressionengine/third_party/` directory.
 
+## Features
+
+* No more forced inline styles: use your own CSS.
+* Define your popularity styles using 1 or 100 classes. You decide.
+* Display the entry count next to each category.
+* Set the minimum number of entries a category needs to appear in the results.
+* Limit your results to a maximum number of categories.
+* Use any combination of categories, irrespective of channel.
+
 ## Parameters
 
 <table>
@@ -55,7 +64,7 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 	<td>min_count</td>
 	<td>int</td>
 	<td>0</td>
-	<td>Minimum number of entries a category should have to appear in the results.</td>
+	<td>Minimum number of entries a category needs to appear in the results.</td>
 	<td></td>
 </tr>
 <tr>
