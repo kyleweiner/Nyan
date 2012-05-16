@@ -75,6 +75,13 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 	<td></td>
 </tr>
 <tr>
+	<td>parent_only</td>
+	<td>yes|no</td>
+	<td>no</td>
+	<td>Set to "yes" to return only parent categories; no sub-categories will be displayed.</td>
+	<td></td>
+</tr>
+<tr>
 	<td>scale</td>
 	<td>string</td>
 	<td>'not-popular, mildly-popular, popular, very-popular, super-popular'</td>
@@ -232,6 +239,6 @@ The following CSS will render a traditional tag cloud style list of categories a
 
 ## Change Log
 
-### v1.0.0
+### v1.0.1
 
 * Initial release

@@ -12,7 +12,7 @@
 
 $plugin_info = array(
 	'pi_name'        => 'Nyan',
-	'pi_version'     => '1.0.0',
+	'pi_version'     => '1.0.1',
 	'pi_author'      => 'Kyle Weiner (Kylemade)',
 	'pi_author_url'  => 'http://kylemade.com/',
 	'pi_description' => 'Displays a list of categories in a tag cloud format, where each category is assigned a CSS class based on its popularity.',
@@ -31,6 +31,7 @@ class Nyan {
 	private $limit; // maximum number of categories to show
 	private $min_count; // minimum number of entries a category should have to appear in the results
 	private $order; // set to "abc" for alphabetical or "pop" (default) for popularity
+	private $parent_only; // set to "yes" to return only parent categories; no sub-categories will be displayed
 	private $scale; // comma or pipe delimited string of classes ordered from least to most popular (e.g. "not-popular, popular, most-popular")
 	private $sort; // set to "asc" or "desc" (default)
 
@@ -71,6 +72,9 @@ class Nyan {
 		// set order
 		$order = $this->EE->TMPL->fetch_param('order');
 		$this->order = ($order == 'abc') ? 'abc' : 'pop';
+
+		// parent_only
+		$this->parent_only = $this->EE->TMPL->fetch_param('parent_only') == 'yes';
 
 		// set scale
 		$scale       = str_replace('|', ',', $this->EE->TMPL->fetch_param('scale'));
@@ -125,6 +129,7 @@ class Nyan {
 			$this->_log_item("limit = $this->limit");
 			$this->_log_item("min_count = $this->min_count");
 			$this->_log_item("order = $this->order");
+			$this->_log_item("parent_only = $this->parent_only");
 			$this->_log_item('scale = '.implode(', ', $this->scale));
 			$this->_log_item("sort = $this->sort");
 		}
@@ -133,9 +138,12 @@ class Nyan {
 		$this->EE->db->select('c.cat_id, cat_name, cat_url_title, COUNT(cp.entry_id) AS entry_count, parent_id')
 			 ->from('categories AS c, channels AS ch')
 			 ->join('category_posts AS cp', 'c.cat_id = cp.cat_id', 'left')
-			 ->where('c.site_id =', $this->site_id)
+			 ->where('c.site_id', $this->site_id)
 			 ->where("group_id IN($this->cat_id)")
 			 ->group_by('c.cat_id');
+
+		// parents only?
+		if ($this->parent_only) $this->EE->db->where('parent_id', 0);
 
 		// order by "abc" or "pop" (default)?
 		// sort by "asc" or "desc" (default)?
