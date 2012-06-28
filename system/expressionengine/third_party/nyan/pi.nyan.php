@@ -192,7 +192,7 @@ class Nyan {
 		// are there still results?
 		if (count($vars) == 0)
 		{
-			$this->_log_item('no results: try adjusting the min_count', 'notice');
+			$this->_log_item('no results: try adjusting the min_count');
 			return $this->EE->TMPL->no_results();		
 		}
 
