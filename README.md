@@ -15,6 +15,10 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 * Limit your results to a maximum number of categories.
 * Use any combination of categories, irrespective of channel.
 
+### New!
+
+* Filter category results by the entry date, expiration date and status of the related channel entries.
+
 ## Parameters
 
 <table>
@@ -95,7 +99,39 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 	<td>Set to "asc" or "desc" (optional, default is 'desc'.</td>
 	<td></td>
 </tr>
+<tr>
+	<td>status</td>
+	<td>string</td>
+	<td></td>
+	<td>Comma or pipe delimited string of channel entry statuses. Channel entries without the supplied status(es) are excluded from the category results.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>start_date</td>
+	<td>string</td>
+	<td></td>
+	<td>Channel entries published prior to this date/time will be excluded from the category results.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>end_date</td>
+	<td>string</td>
+	<td></td>
+	<td>Channel entries published after this date/time will be excluded from the category results.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>expired</td>
+	<td>yes|no</td>
+	<td>no</td>
+	<td>Set to "yes" to include expired channel entries in the category results.</td>
+	<td></td>
+</tr>
 </table>
+
+### Start and End Dates
+
+The `start_date` and `end_date` parameters are interpreted using PHP's [strtotime](http://php.net/manual/en/function.strtotime.php) function and allow for a variety of formats (e.g. "last month", "yesterday", "now", "-1 week", "2013-01-09 00:00", etc). See [this page](http://php.net/manual/en/function.strtotime.php) and the examples below for more details.
 
 ## Single Variables
 
@@ -177,13 +213,13 @@ Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag 
 
 ### Limit categories by popularity
 
-This example will only return categories that are used by 2 or more entires.
+This example will only return categories that are used by 2 or more channel entires.
 
 	{exp:nyan cat_id="1" min_count="2"}
 	<li class="{cat_weight}">{cat_name} ({cat_entry_count})</li>
 	{/exp:nyan}
 
-### Limit categories returned
+### Limit the total categories returned
 
 This example will display only 2 categories.
 
@@ -191,9 +227,24 @@ This example will display only 2 categories.
 	<li class="{cat_weight}">{cat_name} ({cat_entry_count})</li>
 	{/exp:nyan}
 
-### Flat list of categories with entry counts
+### Filter category results by channel entry date and status
 
-	{exp:nyan cat_id="1"}
+This example will exclude channel entries with the following conditions:
+
+* The entry is dated before last month (e.g. `start_date="last_month"`)
+* The entry is dated after the current date/time (e.g. `end_date="now"`)
+* The entry does not have a status of "open"
+* The entry has an expiration date and expired on or before the current date/time
+
+Unless the `expired` parameter is set to "y" or "yes", The last condition is always true.
+
+	{exp:nyan start_date="last_month" end_date="now" status="open"}
+	<li>{cat_name} ({cat_entry_count})</li>
+	{/exp:nyan}
+
+### Include expired entries
+
+	{exp:nyan expired="y"}
 	<li>{cat_name} ({cat_entry_count})</li>
 	{/exp:nyan}
 
@@ -238,6 +289,10 @@ The following CSS will render a traditional tag cloud style list of categories a
 	.categories .super-popular { font-size: 2.6em; opacity: .95; }
 
 ## Change Log
+
+### v1.0.2
+
+* Added the ability to filter category results by the entry date, expiration date and status of the related channel entries.
 
 ### v1.0.1
 
