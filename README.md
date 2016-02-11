@@ -1,4 +1,6 @@
-# Nyan #
+# Nyan
+
+**This project is inactive and no longer being maintained.**
 
 Nyan is an ExpressionEninge plug-in that displays a list of categories in a tag cloud format, where each category is assigned a CSS class based on its popularity.
 
