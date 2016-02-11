@@ -1,3 +1,5 @@
+![Status: Inactive](https://img.shields.io/badge/status-inactive-F44336.svg)
+
 # Nyan
 
 **This project is inactive and no longer being maintained.**
